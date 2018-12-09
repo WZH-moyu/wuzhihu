@@ -1,0 +1,24 @@
+﻿生成启动时间为 2018/12/9 16:21:40。
+     1>项目“D:\vs2013\Project4\Project4\Project4.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt contact.c test.c
+         test.c
+     1>d:\vs2013\project4\project4\test.c(4): error C2011: “contact”:“struct”类型重定义
+                 d:\vs2013\project4\project4\contact.h(14) : 参见“contact”的声明
+     1>d:\vs2013\project4\project4\test.c(16): warning C4133: “函数”: 从“contact *”到“int *”的类型不兼容
+     1>d:\vs2013\project4\project4\test.c(18): warning C4013: “Delete”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(20): warning C4013: “Modify”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(22): warning C4013: “Find”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(24): warning C4013: “Sequence”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(26): warning C4013: “Print”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(28): warning C4013: “Quit”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(32): warning C4013: “nume”未定义；假设外部返回 int
+     1>d:\vs2013\project4\project4\test.c(37): error C2371: “nume”: 重定义；不同的基类型
+         contact.c
+     1>d:\vs2013\project4\project4\contact.c(5): warning C4028: 形参 1 与声明不同
+         正在生成代码...
+     1>已完成生成项目“D:\vs2013\Project4\Project4\Project4.vcxproj”(Rebuild 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.68

@@ -1,0 +1,12 @@
+﻿生成启动时间为 2018/12/14 23:59:07。
+     1>项目“D:\wuzhihu\12-14\12-14\12-14.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         D:\vs2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt test.c
+         test.c
+     1>d:\wuzhihu\12-14\12-14\test.c(7): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\vs2013\vc\include\stdio.h(211) : 参见“fopen”的声明
+     1>已完成生成项目“D:\wuzhihu\12-14\12-14\12-14.vcxproj”(Rebuild 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.69

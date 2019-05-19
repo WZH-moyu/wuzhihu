@@ -25,10 +25,24 @@ void CreateProcess(char* argv[],int n)
     pid_t ret =fork();
     if(ret>0)
     {
+        /*int i=0;
+        char* p=*argv;
+        char* q="cd";
+        while(p!=NULL)
+        {
+            if(strcmp(p,q)==0)
+            {
+                ret=execlp("cd",argv);
+                exit(0);
+            }
+            i++;
+            p++;
+        }*/
         wait(NULL);
     }
     else if(ret==0)
     {
+        //sleep(1);
         ret=execvp(argv[0],argv);
         perror("exec");
         exit(0);

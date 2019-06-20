@@ -495,11 +495,8 @@ void main(int argc, char** argv)
 	glutInitWindowPosition(300, 100);
 	glutInitWindowSize(600, 600);
 	glutCreateWindow("mouse");
-
 	init();
 	glutDisplayFunc(displayFcn);
-
 	glutMouseFunc(mouse);
-
 	glutMainLoop();
 }

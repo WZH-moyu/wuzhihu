@@ -371,7 +371,7 @@
 #include <GL/glut.h>
 GLint winWidth = 600, winHeight = 600; //设置初始化窗口大小
 /* 观察坐标系参数设置*/
-GLfloat x0 = 3.0, y0 = 1.0, z0 = 0.0; // 设置观察坐标系原点
+GLfloat x0 = 3.0, y0 = 1.0, z0 = 1.0; // 设置观察坐标系原点
 GLfloat xref = 0.0, yref = 0.0, zref = 0.0; //设置观察坐标系参考点（视点）
 GLfloat Vx = 0.0, Vy = 1.0, Vz = 0.0; // 设置观察坐标系向上向量（y轴）
 /*观察体（视见体）参数设置 */

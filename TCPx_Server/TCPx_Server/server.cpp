@@ -3,7 +3,8 @@
 //#define _WINSOCK_DEPRECATED_NO_WARNINGS
 
 #define _CRT_SECURE_NO_WARNINGS
-//#define _WINSOCK_DEPRECATED_NO_WABNINGS
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#pragma comment(lib, "Ws2_32.lib")
 #include<stdio.h>
 #include<WinSock2.h>
 #include<iostream>

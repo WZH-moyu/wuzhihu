@@ -1,4 +1,27 @@
 #include"MD5.h"
+MD5::MD5()
+	:_chunkByte(N)
+{
+	init();
+	memset(_chunk, 0, _chunkByte);
+	_lastByte = _totalByte = 0;
+}
+void MD5::init()
+{
+	_a = 0x67452301; 
+	_b = 0xefcdab89;
+	_c = 0x98badcfe;
+	_d = 0x10325476;
+	size_t s[] = { 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7,
+		12, 17, 22, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
+		4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 6, 10,
+		15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21 };
+	//memcpy();
+	for (int i = 0; i < 64; i++)
+	{
+		_k[i] = (size_t)(abs(sin(i + 1.0)) * pow(2.0, 32));
+	}
+}
 void MD5::calculateMD5(size_t* chunk)
 {
 	size_t a = _a;
@@ -35,9 +58,65 @@ void MD5::calculateMD5(size_t* chunk)
 		b = b + shift((a + f + _k[i] + chunk[g]), _str[i]);
 		a = dtemp;
 	}
-	
 	_a += a;
 	_b += b;
 	_c += c;
 	_d += d;
+}
+void MD5::calculateMD5Final()
+{
+	//lastByte<64 byte： 最后一块数据的大小
+	unsigned char* p= _chunk + _lastByte;
+	//填充位的前八bit位：1000 0000    0x80 
+	*p++ = 0x80;
+	size_t remainFillByte = _chunkByte - _lastByte - 1;
+	if (remainFillByte < 8)
+	{
+		memset(p, 0, remainFillByte);
+		calculateMD5((size_t*)_chunk);
+		memset(_chunk, 0, _chunkByte);
+	}
+	else
+	{
+		memset(p, 0, remainFillByte);
+	}
+	//最后的64位存放原始文档位的长度
+	((unsigned long long*)_chunk)[7] = _totalByte * 8;
+	calculateMD5((size_t*)_chunk);
+}
+std::string MD5::getFilleMd5(const char* filename)
+{
+	std::ifstream fin(filename, std::ifstream::binary);
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			fin.read((char*)_chunk, _chunkByte);
+			if (_chunkByte != fin.gcount())
+				break;
+			_totalByte += _chunkByte;
+			calculateMD5((size_t*)_chunk);
+		}
+		_lastByte = fin.gcount();
+		_totalByte += _lastByte;
+		calculateMD5Final();
+	}
+	return changeHex(_a) + changeHex(_b) + changeHex(_c) + changeHex(_d);
+}
+std::string MD5::getStringMd5(const std::string& str)
+{
+	if (str.empty())
+		return "";
+	else
+	{
+		unsigned char* pstr = (unsigned char*)str.c_str();
+		rsize_t numChunk = str.size() / _chunkByte;
+		for (size_t i = 0; i < numChunk; ++i)
+		{
+			_totalByte += _chunkByte;
+			calculateMD5((size_t*)pstr + i * _chunkByte);
+		}
+		_lastByte = str.size() % _chunkByte;
+
+	}
 }

@@ -16,7 +16,8 @@ void MD5::init()
 		12, 17, 22, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
 		4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 6, 10,
 		15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21 };
-	//memcpy();
+	memcpy(_sft, s, sizeof(s));
+	// k[i] 2^32 * abs(sin(i))
 	for (int i = 0; i < 64; i++)
 	{
 		_k[i] = (size_t)(abs(sin(i + 1.0)) * pow(2.0, 32));
@@ -55,7 +56,7 @@ void MD5::calculateMD5(size_t* chunk)
 		size_t dtemp = d;
 		d = c;
 		c = b;
-		b = b + shift((a + f + _k[i] + chunk[g]), _str[i]);
+		b = b + shift((a + f + _k[i] + chunk[g]), _sft[i]);
 		a = dtemp;
 	}
 	_a += a;
@@ -84,6 +85,26 @@ void MD5::calculateMD5Final()
 	((unsigned long long*)_chunk)[7] = _totalByte * 8;
 	calculateMD5((size_t*)_chunk);
 }
+std::string MD5::changHex(size_t num)
+{
+	return std::string();
+}
+std::string changHex(size_t num)
+{
+	static std::string strMap = "0123456789abcdef";
+	std::string ret;
+	std::string byteStr;
+	for (int i = 0; i < 4; ++i) {
+		byteStr = "";
+		size_t b = (num >> (i * 8)) & 0xff;
+		for (int j = 0; j < 2; ++j) {
+			byteStr.insert(0, 1, strMap[b % 16]);
+			b /= 16;
+		}
+		ret += byteStr;
+	}
+	return ret;
+}
 std::string MD5::getFilleMd5(const char* filename)
 {
 	std::ifstream fin(filename, std::ifstream::binary);
@@ -101,7 +122,7 @@ std::string MD5::getFilleMd5(const char* filename)
 		_totalByte += _lastByte;
 		calculateMD5Final();
 	}
-	return changeHex(_a) + changeHex(_b) + changeHex(_c) + changeHex(_d);
+	return (changHex(_a) + changHex(_b) + changHex(_c) + changHex(_d));
 }
 std::string MD5::getStringMd5(const std::string& str)
 {

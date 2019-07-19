@@ -138,6 +138,9 @@ std::string MD5::getStringMd5(const std::string& str)
 			calculateMD5((size_t*)pstr + i * _chunkByte);
 		}
 		_lastByte = str.size() % _chunkByte;
-
+		memcpy(_chunk, pstr + _totalByte, _lastByte);
+		calculateMD5Final();
 	}
+	return  (changHex(_a) + changHex(_b) + changHex(_c) + changHex(_d));
+
 }

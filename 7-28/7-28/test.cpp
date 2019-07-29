@@ -70,10 +70,11 @@ int main()
 }
 #endif
 //员工重要度
-# if 0
+#include<unordered_map>
+//#include<map>
 class Solution {
 public:
-	int DFS(int id, unordered_map<int, employee*>&info)
+	int DFS(int id, std::unordered_map<int, std::employee*>&info)
 	{
 		int ret = info[id]->importance;
 		for (int subid : info[id]->subordinates)
@@ -82,10 +83,10 @@ public:
 		}
 		return ret;
 	}
-	int getImportance(vector<Employee*> employees, int id) {
+	int getImportance(std::vector<employee*> employees, int id) {
 		if (employees.empty())
 			return 0;
-		unordered_map<int, employees*>info;
+		std::unordered_map<int, employee*>info;
 		for (auto e : employees)
 		{
 			info(e->id) = e;
@@ -93,4 +94,3 @@ public:
 		return DFS(id, info);
 	}
 };
-#endif

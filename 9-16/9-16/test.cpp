@@ -209,37 +209,142 @@ void Swap(int *a, int *b)
 //		AdjustDown(arr, sz - 1 - i, 0);
 //	}
 //}
-void AdjustDown(int arr[], int sz, int root)
+//void AdjustDown(int arr[], int sz, int root)
+//{
+//	int i = 2 * root + 1;
+//	int j = 2 * root + 2;
+//	if (j >= sz)
+//		return;
+//	int m = i;
+//	if (i < j && arr[j] > arr[i])
+//	{
+//		m = j;
+//	}
+//	if (arr[m] > arr[root])
+//	{
+//		Swap(arr + m, arr + root);
+//		AdjustDown(arr, sz, m);
+//	}
+//}
+//void CreateHeap(int arr[], int sz)
+//{
+//	for (int i = (sz - 2) / 2; i >= 0; i--)
+//	{
+//		AdjustDown(arr, sz, i);
+//	}
+//}
+//void HeapSort(int arr[], int sz)
+//{
+//	CreateHeap(arr, sz);
+//	for (int i = 0; i < sz; i++)
+//	{
+//		Swap(arr, arr + sz - i - 1);
+//		AdjustDown(arr, sz - i - 1, 0);
+//	}
+//}
+//void AdjustDown(int arr[], int sz, int root)
+//{
+//	int i = 2 * root + 1;
+//	int j = 2 * root + 2;
+//	if (j >= sz)
+//		return;
+//	int m = i;
+//	if (i<j && arr[j]>arr[m])
+//		m = j;
+//	if (arr[m] > arr[root])
+//	{
+//		Swap(arr + m, arr + root);
+//		AdjustDown(arr, sz, m);
+//	}
+//}
+//void CreateHeap(int arr[],int sz)
+//{
+//	for (int i = (sz - 2) / 2; i >= 0; i--)
+//	{
+//		AdjustDown(arr, sz, i);
+//	}
+//}
+//void HeapSort(int arr[], int sz)
+//{
+//	CreateHeap(arr, sz);
+//	for (int i = 0; i < sz; i++)
+//	{
+//		Swap(arr, arr + sz - i - 1);
+//		AdjustDown(arr, sz - i - 1, 0);
+//	}
+//}
+//void AdjustDown(int arr[], int sz, int root)
+//{
+//	int i = 2 * root + 1;
+//	int j = 2 * root + 2;
+//	if (j >= sz)
+//		return;
+//	int m = i;
+//	if (i < j && arr[j] < arr[m])
+//		m = j;
+//	if (arr[m] < arr[root])
+//	{
+//		Swap(arr + m, arr + root);
+//		AdjustDown(arr, sz, m);
+//	}
+//}
+//void CreateHeap(int arr[], int sz)
+//{
+//	for (int i = (sz - 2) / 2; i >= 0; i--)
+//	{
+//		AdjustDown(arr, sz, i);
+//	}
+//}
+//void HeapSort(int arr[], int sz)
+//{
+//	CreateHeap(arr, sz);
+//	for (int i = 0; i < sz; i++)
+//	{
+//		Swap(arr, arr + sz - i - 1);
+//		AdjustDown(arr, sz - i - 1, 0);
+//	}
+//}
+//void AdjustDown(int arr[], int sz, int root)
+//{
+//	int i = 2 * root + 1;
+//	int j = 2 * root + 2;
+//	if (j >= sz)
+//		return;
+//	int m = i;
+//	if (i < j && arr[j] < arr[m])
+//		m = j;
+//	if (arr[m] < arr[root])
+//	{
+//		Swap(arr + m, arr + root);
+//		AdjustDown(arr, sz, m);
+//	}
+//}
+//void CreateHeap(int arr[], int sz)
+//{
+//	for (int i = (sz - 2) / 2; i >= 0; i--)
+//	{
+//		AdjustDown(arr, sz, i);
+//	}
+//}
+//void HeapSort(int arr[], int sz)
+//{
+//	CreateHeap(arr, sz);
+//	for (int i = 0; i < sz; i++)
+//	{
+//		Swap(arr, arr + sz - i - 1);
+//		AdjustDown(arr, sz - i - 1, 0);
+//	}
+//}
+void BubbleSort(int arr[], int sz)
 {
-	int i = 2 * root + 1;
-	int j = 2 * root + 2;
-	if (j >= sz)
-		return;
-	int m = i;
-	if (i < j && arr[j] > arr[i])
+	int i, j;
+	for (i = 0; i < sz - 1; i++)
 	{
-		m = j;
-	}
-	if (arr[m] > arr[root])
-	{
-		Swap(arr + m, arr + root);
-		AdjustDown(arr, sz, m);
-	}
-}
-void CreateHeap(int arr[], int sz)
-{
-	for (int i = (sz - 2) / 2; i >= 0; i--)
-	{
-		AdjustDown(arr, sz, i);
-	}
-}
-void HeapSort(int arr[], int sz)
-{
-	CreateHeap(arr, sz);
-	for (int i = 0; i < sz; i++)
-	{
-		Swap(arr, arr + sz - i - 1);
-		AdjustDown(arr, sz - i - 1, 0);
+		for (j = 0; j < sz - 1 - i; j++)
+		{
+			if (arr[j] > arr[j + 1])
+				swap(arr[j], arr[j + 1]);
+		}
 	}
 }
 int main()
@@ -247,9 +352,9 @@ int main()
 	int arr[] = { 21,23,43,54,42,765,23,45,231,654,432,657,323,543,23 };
 	int sz = sizeof(arr) / 4;
 	//InsertSort(arr,sz);
-	//BubbleSort(arr, sz);
+	BubbleSort(arr, sz);
 	//QuickSort(arr, 0, sz);
-	HeapSort(arr, sz);
+	//HeapSort(arr, sz);
 	for (int i = 0; i < sz; i++)
 	{
 		cout << arr[i] << " ";

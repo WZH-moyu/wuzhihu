@@ -49,45 +49,75 @@
 //	}
 //	return 0;
 //}
+//#include<iostream>
+//#include<vector>
+//#include<algorithm>
+//using namespace std;
+//int main()
+//{
+//	int T = 0;
+//	cin >> T;
+//	int i = T;
+//	while (i > 0)
+//	{
+//		int n = 0;
+//		cin >> n;
+//		vector<int> v;
+//		v.resize(n);
+//		for (int i = 0; i < n; i++)
+//		{
+//			cin >> v[i];
+//		}
+//		if (n <= 1)
+//		{
+//			cout << 0 << endl;
+//			continue;
+//			i--;
+//		}
+//		int ret = 0;
+//		int tmp = 1;
+//		ret = v[0];
+//		int maxtmp = tmp;
+//		for (int i = 1; i < n; i++)
+//		{
+//			ret = (v[i] > ret) ? ret + v[i] : v[i];
+//			if (v[i] != ret)
+//				tmp++;
+//			maxtmp = max(tmp, maxtmp);
+//			if (v[i] == ret)
+//				tmp = 1;
+//		}
+//		cout << maxtmp << endl;
+//		i--;
+//	}
+//	return 0;
+//}
 #include<iostream>
-#include<vector>
-using namespace std;
+#include<string>
+std::string mySteryFunc(std::string src)
+{
+	std::string s;
+	int ret = src.size();
+	for (int i = 0; i < ret; i+=2)
+	{
+		if (src[i] <= 90 && src[i] >= 65)
+		{
+			int j = src[i + 1] - 48;
+			while (j > 0)
+			{
+				s.push_back(src[i]);
+				j--;
+			}
+		}
+	}
+	return s;
+}
 int main()
 {
-	int T = 0;
-	cin >> T;
-	int i = T;
-	while (i > 0)
-	{
-		int n = 0;
-		cin >> n;
-		vector<int> v;
-		v.resize(n);
-		for (int i = 0; i < n; i++)
-		{
-			cin >> v[i];
-		}
-		if (n <= 1)
-		{
-			cout << 0 << endl;
-			continue;
-			i--;
-		}
-		int ret = 0;
-		int tmp = 1;
-		ret = v[0];
-		int maxtmp = tmp;
-		for (int i = 1; i < n; i++)
-		{
-			ret = (v[i] > ret) ? ret + v[i] : v[i];
-			if (v[i] != ret)
-				tmp++;
-			maxtmp = max(tmp, maxtmp);
-			if (v[i] == ret)
-				tmp = 1;
-		}
-		cout << maxtmp << endl;
-		i--;
-	}
+	std::string input;
+	std::string output;
+	std::cin >> input;
+	output = mySteryFunc(input);
+	std::cout << output << std::endl;
 	return 0;
 }

@@ -4,39 +4,39 @@
 #include<stdlib.h>
 using namespace std;
 vector<string> v;
-//vector<string> * fun(string& s)
-//{
-//	string::iterator iter;
-//	iter = s.begin();
-//	while (iter < s.end())
-//	{
-//		int ret = 0;
-//		ret = *iter - '\0';
-//		if (ret % 2 == 0)
-//			s.erase(iter);
-//		else
-//			iter++;
-//	}
-//	v.resize(s.size());
-//	for (int i = 0; i < s.size(); i++)
-//	{
-//		v[i] = s[i];
-//	}
-//	vector<string>* t = &v;
-//	return t;
-//}
-//int main()
-//{
-//	string s;
-//	cin >> s;
-//	vector<string>* t= fun(s);
-//	for (int i = 0; i < v.size(); i++)
-//	{
-//		cout << v[i];
-//	}
-//	system("pause");
-//	return 0;
-//}
+vector<string> * fun(string& s)
+{
+	string::iterator iter;
+	iter = s.begin();
+	while (iter < s.end())
+	{
+		int ret = 0;
+		ret = *iter - '0';
+		if (ret % 2 == 0)
+			s.erase(iter);
+		else
+			iter++;
+	}
+	v.resize(s.size());
+	for (int i = 0; i < s.size(); i++)
+	{
+		v[i] = s[i];
+	}
+	vector<string>* t = &v;
+	return t;
+}
+int main()
+{
+	string s;
+	cin >> s;
+	vector<string>* t= fun(s);
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i];
+	}
+	system("pause");
+	return 0;
+}
 //class Shape
 //{
 //public:

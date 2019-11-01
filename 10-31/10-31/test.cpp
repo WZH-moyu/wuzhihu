@@ -1,4 +1,5 @@
 #include<iostream>
+#include<algorithm>
 #include<stdlib.h>
 using namespace std;
 //class A
@@ -42,4 +43,52 @@ using namespace std;
 //	cout << s << endl;
 //	system("pause");
 //	return 0;
+//}
+//链表的逆置
+//template<class T>
+//struct Listnode
+//{
+//	T* next;
+//	T data;
+//};
+//template<class T>
+//T* ListnodeReverse(T* head)
+//{
+//	if(head!=nullptr && head->next!=nullptr)
+//	T* cur = head;
+//	T* pre = nullptr;
+//	while (cur != nullptr)
+//	{
+//		T* p = cur;
+//		cur = cur->next;
+//		p->next = pre;
+//		pre = p;
+//	}
+//	return pre;
+//}
+//快速排序
+//int partion(int arr[], int left, int right)
+//{
+//	int i = left, j = right;
+//	int key = left;
+//	while (i < j)
+//	{
+//		while (i < j && arr[key] <= arr[j])
+//			j--;
+//		while (i<j && arr[key]>arr[i])
+//			i++;
+//		if (i < j)
+//			swap(arr[i], arr[j]);
+//	}
+//	swap(arr[i], arr[key]);
+//	return i;
+//}
+//void QuickSort(int arr[], int left, int right)
+//{
+//	if (left < right)
+//	{
+//		int div = partion(arr, left, right);
+//		QuickSort(arr, left, div - 1);
+//		QuickSort(arr, div + 1, right);
+//	}
 //}

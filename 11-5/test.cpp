@@ -47,7 +47,7 @@ class BlockQueue{
       return (q.size()== cap? true:false);
     }
   public:
-    BlockQueue(int _cap = NULL):cap(_cap)
+    BlockQueue(int _cap = NUM):cap(_cap)
   {
     pthread_mutex_init(&lock,NULL);
     pthread_cond_init(&full,NULL);
@@ -85,3 +85,34 @@ class BlockQueue{
       pthread_cond_destroy(&empty);
     }
 };
+void *consumer(void *arg)
+{
+  BlockQueue *bdp=(BlockQueue*) arg;
+  int data;
+  for(;;){
+    bdp->PopData(data);
+    std::cout<<"Consume data done:"<<data<<std::endl;
+  }
+}
+//more faster
+void *producter(void *arg)
+{
+  BlockQueue *bqp=(BlockQueue*)arg;
+  srand((unsigned long)time(NULL));
+  for(;;){
+    int data=rand()%1024;
+    bqp->PushData(data);
+    std::cout<<"Product data done:"<<data<<std::endl;
+    //sleep(1);
+  }
+}
+int main(){
+  BlockQueue bq;
+  pthread_t c,p;
+  pthread_create(&c,NULL,consumer,(void*)&bq);
+  pthread_create(&p,NULL,producter,(void*)&bq);
+
+  pthread_join(c,NULL);
+  pthread_join(p,NULL);
+  return 0;
+}

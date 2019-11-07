@@ -77,7 +77,8 @@ namespace moyu
       
       void Append(size_t n,char c)
       {
-
+        for(size_t i = 0;i < n; ++i)
+          Pushback(c);
       }
       //作业实现
       void Append(const char* str);
@@ -88,6 +89,85 @@ namespace moyu
         _size = 0;
         _str[_size] = '\0';
       }
+      void Swap(String& s)
+      {
+        swap(_str,s._str);
+        swap(_size,s._size);
+        swap(_capacity,s._capacity);
+      }
+
+      const char* C_Str()const{
+        return _str;
+      }
+
+      ////////////////////////////////////////////////////////////
+      //capacity
+      size_t Size()const
+      {
+        return _size;
+      }
+
+      size_t Capacity()const 
+      {
+        return _capacity; 
+      }
+
+      bool Empty()const 
+      {
+        return 0 == _size;
+      }
+
+      void Resize(size_t newSize, char c = char())
+      {
+        if(newSize > _size)
+        {
+          //如果newSize大于底层的大小，则需要从新开辟空间
+          if(newSize > _capacity)
+          {
+            Reserve(newSize);
+          }
+          memset(_str + _size, c, newSize - _size);
+        }
+        _size = newSize;
+        _str[newSize] = '\0';
+      }
+
+      void Reverse(size_t newCapacity)
+      {
+        //如果新容量大于旧容量，则开辟空间
+        if(newCapacity > _capacity)
+        {
+          char* str = new char[newCapacity + 1];
+          strcpy(str, _str);
+          //释放原来的空间，使用新空间
+          delete[] _str;
+          _str = str;
+          _capacity = newCapacity;
+        }
+      }
+
+      //////////////////////////////////////////////////////////
+      //access
+      char& operator[](size_t index)
+      {
+        assert(index < _size);
+        return _str[index];
+      }
+
+      const char& operator[](size_t index)const
+      {
+        assert(index < _size);
+        return _str[index];
+      }
+
+      //////////////////////////////////////////////////////////
+      //作业
+      bool operator<(const String& s);
+      bool operator<=(const String& s);
+      bool operator>(const String& s);
+      bool operator>=(const String& s);
+      bool operator==(const String& s);
+      bool operator!=(const String& s);
     private:
       char* _str;
       size_t _capacity;

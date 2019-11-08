@@ -70,7 +70,7 @@ namespace moyu
       void Pushback(char c)
       {
         if(_size == _capacity)
-          Reserver(_capacity * 2);
+          Reserve(_capacity * 2);
         _str[_size++] = c;
         _str[_size] = '\0';
       }
@@ -80,7 +80,7 @@ namespace moyu
         for(size_t i = 0;i < n; ++i)
           Pushback(c);
       }
-      //作业实现
+
       void Append(const char* str);
       String& operator += (const char* str);
 
@@ -132,7 +132,7 @@ namespace moyu
         _str[newSize] = '\0';
       }
 
-      void Reverse(size_t newCapacity)
+      void Reserve(size_t newCapacity)
       {
         //如果新容量大于旧容量，则开辟空间
         if(newCapacity > _capacity)
@@ -161,13 +161,24 @@ namespace moyu
       }
 
       //////////////////////////////////////////////////////////
-      //作业
+      //赋值运算符重载
       bool operator<(const String& s);
       bool operator<=(const String& s);
       bool operator>(const String& s);
       bool operator>=(const String& s);
       bool operator==(const String& s);
       bool operator!=(const String& s);
+      //返回c在string中第一次出现的位置
+      size_t Find(char c, size_t pos = 0)const;
+      //返回字串s在string中第一次出现的位置
+      size_t Find(const char* s, size_t pos = 0)const;
+      //截取string从pos位置开始的n个字符
+      String SubStr(size_t pos, size_t n);
+      //在pos位置插入字符/字符串，返回该字符串的位置
+      String& Insert(size_t pos, char c);
+      String& Insert(size_t pos, const char* str);
+      //删除pos位置上的元素，并返回该元素的下一个位
+      String& Erase(size_t pos, size_t len);
     private:
       char* _str;
       size_t _capacity;
